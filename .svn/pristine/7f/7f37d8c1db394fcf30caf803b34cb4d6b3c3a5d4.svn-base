@@ -1,0 +1,45 @@
+Hello Ousmane,
+I wish you a happy and healthy new year!
+
+Regarding the autoinstaller script. I both attach it in zip, but it is also on the primary server in:
+/var/www/html/com/net-profil/subdomains/autoinstaller/
+and I have created a db on the mysql server:
+"autoinstaller" with the table "website"
+
+You run the script by:
+php auto_website_run.php
+or:
+php /var/www/html/com/net-profil/subdomains/autoinstaller/auto_website_run.php
+
+The table needs those values:
+domain: the base domain, ex: www.bizenco.com
+alias: the alias domains, separated by whitespace - ' ': bizenco.com www.bizenco.fr bizenco.fr
+ssl: 0 - do not install https, 1 - install https
+directory: where the base dir of the   website is, ex: /var/www/html/com/net-profil/subdomains/demo5
+status: here you control behaviour. Can get those values (case insensitive):
+-- CREATE: it will try to create a new installation
+-- DELETE: it will remove https certificate and delete apache conf files
+-- EDIT: it will first delete, and then recreate the installation
+-- OK: return status that the command was executed correctly
+-- DELETED: in case of delete command, that the delete was successful. You can then remove the line (?)
+-- ERROR:
+
+errors: will contain the error message that halted the script execution.
+
+Important notes:
+- I tried to make the script "fail-safe" and automate. Even in error, it shouldn't stop the server, but in case of error, most likely a human should take a look.
+- In case of HTTPS, we can request max 5 certificates per domain per week. So, if you create a webiste demo150.netprofil.com, with ssl, and edit it 5 times (remove/create), it will get an error, because each time it will request a new certificate. Then, you will have to wait 1 week, to reinstall the https certificate.
+- In case of HTTPS, the website must NOT be locked. Else the installation will fail. After installation, you can password lock the website again.
+
+
+Can we take a look into this together? I tested it and used
+demo15.net-profil.com,
+demo18.net-profil.com, 
+demo20.net-profil.com,
+demo21.net-profil.com,
+demo22.net-profil.com,
+
+I suggest you create a few create commands on the table, so I can verify we both understood the logic.
+
+if you want to run a test, the command is:
+php /var/www/html/com/net-profil/subdomains/autoinstaller/auto_website_run.php

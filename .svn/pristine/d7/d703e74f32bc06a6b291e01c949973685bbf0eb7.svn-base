@@ -1,0 +1,14 @@
+<VirtualHost *:80>
+    ServerName __DOMAIN__
+    # Redirect permanent / https://__DOMAIN__
+
+    CustomLog __LOG_DIR__/access_log combined
+    ErrorLog  __LOG_DIR__/error_log
+
+    DocumentRoot __DIRECTORY__
+
+    <Directory __DIRECTORY__>
+        Options FollowSymLinks
+        Allow from __DOMAIN__
+    </Directory>
+</VirtualHost>

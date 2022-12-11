@@ -1,0 +1,30 @@
+{
+    "name": "webinv/datatables",
+    "description": "Datatables PHP models",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Krzysztof Kardasz",
+            "email": "krzysztof@kardasz.eu"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Webinv\\Datatables\\": "src/Datatables/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Webinv\\Datatables\\Tests\\": "tests"
+        }
+    },
+    "require": {
+        "php": ">=7.2",
+        "ext-json": "*",
+        "psr/http-message": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.5"
+    }
+}

@@ -1,0 +1,21 @@
+<IfModule mod_ssl.c>
+    <VirtualHost *:443>
+        ServerName __DOMAIN_ALIAS__
+        # Redirect permanent / https://__DOMAIN__
+
+        CustomLog __LOG_DIR__/access_log combined
+        ErrorLog  __LOG_DIR__/error_log
+
+        DocumentRoot __DIRECTORY__
+
+        <Directory __DIRECTORY__>
+            Options FollowSymLinks
+            Allow from __DOMAIN__
+        </Directory>
+
+        SSLCertificateFile /etc/letsencrypt/live/__DOMAIN__/cert.pem
+        SSLCertificateKeyFile /etc/letsencrypt/live/__DOMAIN__/privkey.pem
+        Include /etc/letsencrypt/options-ssl-apache.conf
+        SSLCertificateChainFile /etc/letsencrypt/live/__DOMAIN__/chain.pem
+    </VirtualHost>
+</IfModule>

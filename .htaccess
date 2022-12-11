@@ -1,0 +1,41 @@
+
+#AddType text/cache-manifest manifest
+AddDefaultCharset UTF-8
+RewriteEngine on
+RewriteBase /
+
+RewriteRule ^$ /frontend/index.php?app=frontend&module=accueil [QSA,L]
+RewriteRule ^a-propos-de-nous$ /frontend/index.php?app=frontend&module=about [QSA,L]
+RewriteRule ^contact$ /frontend/index.php?app=frontend&module=contact [QSA,L]
+RewriteRule ^evenements$ /frontend/index.php?app=frontend&module=event [QSA,L]
+RewriteRule ^actualites$ /frontend/index.php?app=frontend&module=actualite [QSA,L]
+RewriteRule ^recrutement$ /frontend/index.php?app=frontend&module=recrutement [QSA,L]
+RewriteRule ^recrutement/postuler$ /frontend/index.php?app=frontend&module=postuler [QSA,L]
+RewriteRule ^galerie-photo$ /frontend/index.php?app=frontend&module=galerie [QSA,L]
+
+#[Authentification - Connexion]
+RewriteRule ^connexion$ /frontend/index.php?app=frontend&module=connexion&action=authentification [QSA,L]
+RewriteRule ^connexion/motdepasseoublie$ /frontend/index.php?app=frontend&module=connexion&action=motdepasseoublie [QSA,L]
+RewriteRule ^connexion/changement-mot-de-passe-oublie/(.*)/ref-(.*)$ /frontend/index.php?app=frontend&module=connexion&action=changementmotdepasseoublie&dateGen=$1&id=$2 [QSA,L]
+RewriteRule ^connexion/changement-mot-de-passe$ /frontend/index.php?app=frontend&module=connexion&action=changementmotdepasse [QSA,L]
+RewriteRule ^deconnexion$ /frontend/index.php?app=frontend&module=connexion&action=deconnexion [QSA,L]
+
+
+#[Genere BD]
+RewriteRule ^generation-bd$ /outils/_gc_bd.php [QSA,L]
+
+#[Redirection 404 suite a une erreur ou une page non trouvée]
+ErrorDocument 404 /frontend/404.php
+
+RewriteRule ^agenda/liste/(.*)$ /frontend/index.php?app=frontend&module=agenda&_cdate=$1 [QSA,L]
+RewriteRule ^agenda/liste$ /frontend/index.php?app=frontend&module=agenda [QSA,L]
+RewriteRule ^liste-des-acquereurs$ /frontend/index.php?app=frontend&module=liste-des-acquereurs [QSA,L]
+
+#AuthUserFile /var/www/html/com/net-profil/subdomains/demo8/.htpasswd
+#AuthGroupFile /dev/null
+#AuthName ByPassword
+#AuthType Basic
+#
+#<limit GET>
+#require valid-user
+#</Limit>
